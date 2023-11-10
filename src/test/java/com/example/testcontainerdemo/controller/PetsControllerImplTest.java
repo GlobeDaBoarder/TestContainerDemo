@@ -15,6 +15,7 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -30,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Testcontainers
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 class PetsControllerImplTest{
     @Autowired
     PetsController petsController;
@@ -53,11 +55,6 @@ class PetsControllerImplTest{
     @BeforeEach
     void setup(){
         testDataLoader.loadTestData();
-    }
-
-    @AfterEach
-    void teardown(){
-        testDataLoader.deleteTestData();
     }
 
     @Test
