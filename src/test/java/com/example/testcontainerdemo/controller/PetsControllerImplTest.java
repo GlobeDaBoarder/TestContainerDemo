@@ -52,12 +52,13 @@ class PetsControllerImplTest{
 
     @BeforeEach
     void setup(){
+        postgresContainer.start();
         testDataLoader.loadTestData();
     }
 
     @AfterEach
     void teardown(){
-        testDataLoader.deleteTestData();
+        postgresContainer.stop();
     }
 
     @Test
